@@ -1,0 +1,29 @@
+package org;
+
+import javax.swing.*;
+import java.awt.*;
+import com.teamdev.jxbrowser.chromium.Browser;
+import com.teamdev.jxbrowser.chromium.swing.BrowserView;
+
+public class Home {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stubimport com.teamdev.jxbrowser.chromium.swing.BrowserView;
+		Browser browser = new Browser();
+		BrowserView view = new BrowserView(browser);
+		
+		JFrame frame = new JFrame("Demo");
+		Window window = new Window(frame);
+		
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.add(view, BorderLayout.CENTER);
+        frame.setSize(700, 600);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
+        browser.loadURL("http://www.google.com");
+
+	}
+
+
+}
