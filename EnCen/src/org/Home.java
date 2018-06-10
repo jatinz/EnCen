@@ -1,131 +1,63 @@
 package org;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import com.teamdev.jxbrowser.chromium.Browser;
-import com.teamdev.jxbrowser.chromium.NavigationEntry;
-import com.teamdev.jxbrowser.chromium.events.FailLoadingEvent;
-import com.teamdev.jxbrowser.chromium.events.FinishLoadingEvent;
-import com.teamdev.jxbrowser.chromium.events.FrameLoadEvent;
-import com.teamdev.jxbrowser.chromium.events.LoadAdapter;
-import com.teamdev.jxbrowser.chromium.events.LoadEvent;
-import com.teamdev.jxbrowser.chromium.events.NetError;
-import com.teamdev.jxbrowser.chromium.events.ProvisionalLoadingEvent;
-import com.teamdev.jxbrowser.chromium.events.StartLoadingEvent;
-import com.teamdev.jxbrowser.chromium.swing.BrowserView;
-
-public class Home {
-
-	private static JFrame frame = null;
-	private static Browser browser = null;
-	private static BrowserView view = null;
-	private static JLabel labelDisplay;
-	
-	public static void main(String[] args) {
-		GraphicsDevice device = GraphicsEnvironment
-		        .getLocalGraphicsEnvironment().getScreenDevices()[0];
-		// TODO Auto-generated method stubimport com.teamdev.jxbrowser.chromium.swing.BrowserView;
-		browser = new Browser();
-		view = new BrowserView(browser);
-		
-		frame = createFrame();
-		device.setFullScreenWindow(frame);
-		Window window = new Window(frame);
-		
-		 JButton exitButton = new JButton("Exit");
-		    exitButton.addActionListener(new ActionListener() {
-		        @Override
-		        public void actionPerformed(ActionEvent e) {
-		            device.setFullScreenWindow(null);
-		            
-		        }
-		    });
-		
-		 
-        browser.loadURL("http://www.google.com");
-        labelDisplay = new JLabel("Loading Webpage ...");
-        
-        //Add to the Browser view-------------------
-        
-        view.add(labelDisplay,BorderLayout.NORTH);
-        view.add(exitButton,BorderLayout.SOUTH);
-        
-        //-------------------------------------------
-        
-        int entryCount = browser.getNavigationEntryCount();
-        int index = browser.getCurrentNavigationEntryIndex();
-		NavigationEntry navigationEntry = browser.getNavigationEntryAtIndex(index);
-        System.out.println("URL = " + navigationEntry.getURL());
-        System.out.println("Original URL = " + navigationEntry.getOriginalURL());
-        System.out.println("Title = " + index);
-        browser.addLoadListener(new LoadAdapter() {
-            @Override
-            public void onStartLoadingFrame(StartLoadingEvent event) {
-                if (event.isMainFrame()) {
-                    System.out.println("Main frame has started loading");
-                    view.remove(labelDisplay);
-                }
-            }
-
-            @Override
-            public void onProvisionalLoadingFrame(ProvisionalLoadingEvent event) {
-                if (event.isMainFrame()) {
-                    System.out.println("Provisional load was committed for a frame");
-                    view.remove(labelDisplay);
-                }
-            }
-
-            @Override
-            public void onFinishLoadingFrame(FinishLoadingEvent event) {
-                if (event.isMainFrame()) {
-                    System.out.println("Main frame has finished loading");
-                    view.remove(labelDisplay);
-                }
-            }
-
-            @Override
-            public void onFailLoadingFrame(FailLoadingEvent event) {
-                NetError errorCode = event.getErrorCode();
-                if (event.isMainFrame()) {
-                    System.out.println("Main frame has failed loading: " + errorCode);
-                    labelDisplay = new JLabel("Error-FailLoadingEvent : Encountered Error. Check Logs.");
-                    //labelLoading.setBounds(100, 199, 200, 50);
-                    view.add(labelDisplay,BorderLayout.NORTH);
-                }
-            }
-
-            @Override
-            public void onDocumentLoadedInFrame(FrameLoadEvent event) {
-                System.out.println("Frame document is loaded.");
-                view.remove(labelDisplay);
-            }
-
-            @Override
-            public void onDocumentLoadedInMainFrame(LoadEvent event) {
-                System.out.println("Main frame document is loaded.");
-                view.remove(labelDisplay);
-            }
-        });
-
-
-
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+ 
+public class Home extends Application {
+ 
+   // A HTML Content with a javascript function.
+   @Override
+   public void start(final Stage stage) {
+ 
+	   GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
+       Button button = new Button("Exit");
+ 
+       final WebView browser = new WebView();
+       final WebEngine webEngine = browser.getEngine();
+       browser.setPrefHeight(1500);
+ 
+       // Enable Javascript.
+       webEngine.setJavaScriptEnabled(true);
+ 
+       //webEngine.loadContent("https://www.google.com");
+       webEngine.load("http://www.google.com");
+       button.setOnAction(new EventHandler<ActionEvent>() {
+ 
+           @Override
+           public void handle(ActionEvent event) {
+               // Call a JavaScript function of the current page
+        	   stage.setFullScreen(false);
+           }
+       });
+ 
+       VBox root = new VBox();
+       root.setPadding(new Insets(0));
+       root.setSpacing(0);
+       root.getChildren().addAll(browser,button);
        
-        frame.add(view,BorderLayout.CENTER);
-	}
-
-	private static JFrame createFrame() {
-		frame = new JFrame("Demo");
-		frame.setUndecorated(true);
-		frame.setSize(700, 600);
-	    frame.setLocationRelativeTo(null);
-	    frame.setVisible(true);
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		return frame;
-		
-	}
-
-
+ 
+       Scene scene = new Scene(root);
+       stage.setTitle("Browser");
+       stage.setScene(scene);
+       stage.setWidth(450);
+       stage.setHeight(300);
+       stage.setFullScreen(true);
+       stage.show();
+       
+   }
+ 
+   public static void main(String[] args) {
+       launch(args);
+   }
+ 
 }
