@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TestFlix</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <style>
+  
+  #section1 {padding-top:50px;height:400px;color: #fff;  width:100%;}
+  #section2 {padding-top:50px;height:600px;color: #fff; background-color: #eee; color:black;}
+  #section3 {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
+  #section41 {padding-top:50px;height:500px;color: #fff; background-color: #00bcd4;}
+  #section42 {padding-top:50px;height:500px;color: #fff; background-color: #009688;}
+  .carouselStyle{
+  		position:absolute;
+  		min-height:75%;
+  		max-height:65%;
+  		width:100%;
+  		
+  		background:black;
+  		padding-bottom:0px;
+  		margin-bottom:0px;
+  	}
+  	.navbar-custom{
+  		padding-bottom:0px;
+  		margin-bottom:0px;
+  	}
+  	.thumbnail{
+  		position:absolute;
+  	}
+  	
+  	.page-footer{
+  		background:#eee;
+  	}
+  	.item-hover{
+  		display:block;
+  		border:1px black;
+  		width:100%;
+  		height:20%;
+  	}
+  	
+  	a{
+  		text-decoration:none;
+  	}
+  	a:hover{
+  		font-weight: bold
+  	}
+  	ul{
+  		list-style:none;
+  	}
+  	
+  </style>
+</head>
+<body>
+<!-- Modal window code -->
+
+<div class="modal fade" id="myModalAbout" role="dialog">
+
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+          		<h4 class="modal-title">About</h4>
+			</div>
+			
+			<div class="modal-body">
+				<p> This is a Bootstrap Assignment </p>
+			</div>
+			
+		</div>	
+	</div>
+	
+ </div>
+ 
+ 
+ <div class="modal fade" id="myModalSuscribe" role="dialog">
+
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+          		<h4 class="modal-title"> Suscribe </h4>
+			</div>
+			
+			<div class="modal-body">
+				
+			</div>
+			
+		</div>	
+	</div>
+	
+ </div>
+
+<!-- Modal Window  Code -->
+
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">TestFlix</a>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="#section1">Home</a></li>
+          <li><a href="#section2">Movies</a></li>
+          <li><a href="#section3">Series</a></li>
+           <li class="nav-item dropdown">
+           <li class="nav-item dropdown">
+     		 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">More <span class="glyphicon glyphicon-chevron-down"></span> </a>
+      			<div class="dropdown-menu">
+      				<ul>
+        				<li data-toggle="modal" data-target="#myModalAbout" ><a class="dropdown-item item-hover" href="#">About</a></li>
+        				<li data-toggle="modal" data-target="#myModalSuscribe"><a class="dropdown-item item-hover" href="#">Suscribe</a></li>
+        				
+        			</ul>
+      			</div>
+      		</li>
+        </ul>
+        <form id="search" class="navbar-form navbar-right">
+      					<div class="input-group">
+        					<input type="text" class="form-control" placeholder="Search" name="search">
+        					<div class="input-group-btn">
+          						<button class="btn btn-default" type="submit">
+            						<i class="glyphicon glyphicon-search"></i>
+          						</button>
+        					</div>
+      					</div>
+    			 	</form>
+      </div>
+    </div>
+  </div>
+</nav>    
+
+<div id="section1" >
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" >
+   
+   				<ol class="carousel-indicators">
+     				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      				<li data-target="#myCarousel" data-slide-to="1"></li>
+      				<li data-target="#myCarousel" data-slide-to="2"></li>
+    			</ol>
+
+
+    			<div class="carousel-inner" style=" width:100%; height: 400px !important;">
+      				<div class="item active">
+        				<img id="1" src="1.jpg" alt="Friends" style="width:100%;background-size:cover;" onchange="showInfo(this.id)">
+        			
+      				</div>
+
+      				<div class="item">
+        				<img id="2" src="2.jpg" alt="house" style="width:100%; background-size:cover;">
+      				</div>
+    
+      				<div class="item">
+        				<img id="3" src="3.png" alt="Arther" style="width:100%; background-size:cover;">
+      				</div>
+      				<div class="item">
+        				<img id="4" src="series_block2.jpg" alt="Arther" style="width:100%; ">
+      				</div>
+    			</div>
+
+    <!-- Left and right controls -->
+   			 <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      			<span class="glyphicon glyphicon-chevron-left"></span>
+      			<span class="sr-only">Previous</span>
+    		</a>
+    		<a class="right carousel-control" href="#myCarousel" data-slide="next">
+      			<span class="glyphicon glyphicon-chevron-right"></span>
+      			<span class="sr-only">Next</span>
+    		</a>
+  			</div>
+</div>
+<div id="section2" class="container-fluid">
+  <h1>Movies</h1>
+  <br> 
+   <div class="col-xs-3">
+  	 <div class="thumbnail">     
+        <img class="img-responsive" src="movie_block1.jpeg" alt="Lights" style="width:100%">
+        <div class="caption">
+          <p>King Arther</p>
+        </div>   
+    </div>
+  </div>
+  <div class="col-xs-3">
+  	<div class="thumbnail">     
+        <img class="img-responsive" src="4.jpg" alt="Lights" style="width:100%">
+        <div class="caption">
+          <p>12 Strong</p>
+        </div>   
+    </div>
+  </div>
+  <div class="col-xs-3">
+  	<div class="thumbnail">     
+        <img class="img-responsive" src="movies_block6.jpg" alt="Lights" style="width:100%">
+        <div class="caption">
+          <p>Batman Vs Superman</p>
+        </div>   
+    </div>
+  </div>
+  <div class="col-xs-3">
+  	<div class="thumbnail">     
+        <img class="img-responsive" src="movies_block2.jpg" alt="Lights" style="width:100%">
+        <div class="caption">
+          <p>Inferno</p>
+        </div>   
+    </div>
+  </div>
+ 
+  
+</div>
+<div id="section3" class="container-fluid">
+  <h1>Series</h1>
+  <div class="col-md-3 col-xs-3">
+  	 <div class="thumbnail">     
+        <img class="img-responsive" src="series_block1.jpg" alt="Lights" style="width:100%">
+        <div class="caption">
+          <p>How I Met Your Mother</p>
+        </div>   
+    </div>
+  </div>
+  <div class="col-md-3 col-xs-3">
+  	<div class="thumbnail">     
+        <img class="img-responsive" src="series_block2.jpg" alt="Lights" style="width:100%">
+        <div class="caption">
+          <p>Arrow</p>
+        </div>   
+    </div>
+  </div>
+  <div class="col-md-3 col-xs-3">
+  	<div class="thumbnail">     
+        <img class="img-responsive" src="series_block3.jpg" alt="Lights" style="width:100%">
+        <div class="caption">
+          <p>Flash</p>
+        </div>   
+    </div>
+  </div>
+  <div class="col-md-3 col-xs-3">
+  	<div class="thumbnail">     
+        <img class="img-responsive" src="series_block4.jpg" alt="Lights" style="width:100%">
+        <div class="caption">
+          <p>Narcos</p>
+        </div>   
+    </div>
+  </div>
+ 
+</div>
+
+ <footer class="page-footer">
+      
+          <!--Footer Links-->
+          <div class="container-fluid text-center ">
+              <div class="row">
+      
+                  <!--First column-->
+                  <div class="col-md-6">
+                      <h5 class="text-uppercase">Bootstrap Assignment</h5>
+                  </div>
+                  
+                  <div class="col-md-6">
+                      
+                          <i class="fab fa-facebook-square"></i> <a href="#!">Facebook</a>
+                         <i class="fas fa-envelope"></i> <a href="#!">Gmail</a>
+                          <i class="fab fa-instagram"></i> <a href="#!">Instagram</a>
+                      
+                  </div>
+                  <!--Second column-->
+              </div>
+          </div>
+          <!--/.Footer Links-->
+      
+          <!--Copyright-->
+          <div class="footer-copyright text-center">
+              <div class="container-fluid">
+                  © Blah Blah blah Jatin 2018 </a>
+      
+              </div>
+          </div>
+          <!--/.Copyright-->
+      
+      </footer>
+
+
+
+
+<script>
+$(document).ready(function(){
+  // Add scrollspy to <body>
+  
+  $('#search').on('submit',function(){
+  	alert("Search Function Not Ready yet.");
+  });
+  
+  $('body').scrollspy({target: ".navbar", offset: 50});   
+
+  // Add smooth scrolling on all links inside the navbar
+  $("#myNavbar a").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      event.preventDefault();
+
+      var hash = this.hash;
+
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        window.location.hash = hash;
+      });
+    }  // End if
+  });
+});
+</script>
+
+</body>
+</html>
+
