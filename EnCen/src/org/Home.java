@@ -45,7 +45,6 @@ public class Home extends Application {
        root.setSpacing(0);
        root.getChildren().addAll(browser,button);
        
- 
        Scene scene = new Scene(root);
        stage.setTitle("Browser");
        stage.setScene(scene);
